@@ -25,10 +25,6 @@ export class Cliente extends Pessoa implements IUsuario{
         this.vip = vipStatus;
     }
 
-    getEnderecos(): Endereco[] {
-        return this.enderecos;
-    }
-
     setEnderecos(endereco : Endereco) {
         this.enderecos.push(endereco);
     }
@@ -36,9 +32,17 @@ export class Cliente extends Pessoa implements IUsuario{
     setContas(conta : Conta){
         this.contas.push(conta);
     }
+
     //implementar a logica de autenticacao para Cliente
     autenticar(): boolean {
         return true;
+    }
+
+    listarEnderecos() {
+        console.log(`Enderecos do cliente ${this.getNome()}. CPF :${this.getCPF()}`);
+        this.enderecos.forEach(e =>{
+            console.log(`Cep: ${e.getCEP()} | Logradouro: ${e.getLogradouro()} | Numero: ${e.getNumero()} | Complemento: ${e.getComplemento()} | Cidade: ${e.getCidade()} | UF: ${e.getUf()} |`)
+        })
     }
 
 }

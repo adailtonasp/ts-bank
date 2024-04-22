@@ -1,21 +1,38 @@
 import { Conta } from './Conta';
 import {Cliente} from './Cliente';
-import {Debito} from './Debito'
-import {Credito} from './Credito'
 
-class ContaCorrente extends Conta{
+export class ContaCorrente extends Conta{
     private limite : number;
 
-    constructor(limite : number, numero:string, cliente : Cliente,debito : Debito,credito: Credito){
-        super(numero,cliente, debito,credito)
+    constructor(limite : number, numero:string, cliente : Cliente){
+        super(numero,cliente)
         this.limite = limite;
     }
 
-    transferir(){
-
+    setLimite(valor : number){
+        this.limite = valor;
+    }
+    
+    calcularSaldo():number{
+        return this.credito.getValor() - this.debito.getValor() + this.limite;
     }
 
-    calcularSaldo() : number {
-        return 0;
+    verificarLimite(valor:number) : boolean{
+        if(this.calcularSaldo() - valor < 0){
+            console.log("limite reprovado");
+            return false;
+        }
+        console.log("limite aprovado");
+        return true;
     }
+
+    transferir(contaDestino:Conta,valor: number) : boolean{
+        if(this.verificarLimite(valor)){
+            this.sacar(valor);
+            contaDestino.depositar(valor)
+            return true;
+        }
+        return false;   
+    }
+
 }

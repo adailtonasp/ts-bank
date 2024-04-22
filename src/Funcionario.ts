@@ -1,7 +1,7 @@
 import {Pessoa} from './Pessoa'
 import {IUsuario} from './IUsuario'
 
-class Funcionario extends Pessoa implements IUsuario{
+export class Funcionario extends Pessoa implements IUsuario{
     private salario : number;
 
     constructor(salario:number,cpf:string,nome:string,telefone:string){

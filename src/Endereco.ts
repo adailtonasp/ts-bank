@@ -7,6 +7,7 @@ export class Endereco{
     private complemento : string;
     private cidade : string;
     private uf : string;
+    
     private cliente : Cliente;
 
     constructor(cep: string, logradouro: string, numero: number, complemento: string, cidade: string, uf: string,cliente : Cliente) {

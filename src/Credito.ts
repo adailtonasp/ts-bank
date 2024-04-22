@@ -10,4 +10,8 @@ export class Credito{
     getValor():number{
         return this.valor;
     }
+
+    setValor(valor:number){
+        this.valor = valor;
+    }
 }
